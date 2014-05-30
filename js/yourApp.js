@@ -1,13 +1,24 @@
 $(function(){
-	$("#themodal").razorsModalInit();
-	$("#themodal2").razorsModalInit();
+	$("#themodal").razorModal({"action":"init"});
+	$("#themodal2").razorModal({"action":"init"});
 
-	$("#themodal").razorsModalShow();
-	$("#themodal2").razorsModalShow();
 
-	//$("#themodal").razorsModalHide();
+
+	$("#but1").on("click", function(e){
+		e.preventDefault();
+		$("#themodal").razorModal({"action":"show"});
+	})
+
+	$("#but2").on("click", function(e){
+		e.preventDefault();
+		$("#themodal2").razorModal({"action":"animate-show"});
+	})
+
+	$("#themodalEnd").on("click", function(){
+		$("#themodal").razorModal({"action":"hide"});
+	})
 
 	$("#themodalEnd2").on("click", function(){
-		$("#themodal2").razorsModalHide();
+		$("#themodal2").razorModal({"action":"animate-hide"});
 	})
 })

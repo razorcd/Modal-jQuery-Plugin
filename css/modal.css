@@ -1,8 +1,42 @@
+body {
+	padding:20px;
+	font-family: helvetica, arial, sans-serif;
+}
+h1, h2 {
+	text-align: center;
+}
+
 #themodal {
 	background:lightgrey;
 	width:300px;
+	padding:20px;
+	border:6px solid darkgrey;
+	border-radius: 25px;
+	box-shadow: 4px 4px 8px #444;
 }
+
 #themodal2 {
-		background:red;
+	background:#3382E1;
 	width:400px;
+	border-radius: 15px;
+	padding:20px;
+	box-shadow: 1px 1px 12px #666;
+	color:white;
+	border:6px solid #eee;
+}
+
+button {
+	float:right;
+	margin-right: 25px;
+}
+
+#but1, #but2 {
+	display: inline-block;
+	color:white;
+	text-decoration: none;
+	text-align: center;
+	width:120px;
+	background-color: #0080FF;
+	padding:30px;
+	margin:10px 100px;
 }

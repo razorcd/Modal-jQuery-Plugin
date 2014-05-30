@@ -1,7 +1,6 @@
 (function($){
 
 	var actions = {
-
 		//activate/deactivate scroll
 		setScroll: function(bool){
 			if (!bool) {
@@ -33,19 +32,25 @@
 			this.setScroll(true);
 		},
 		animateShow: function(thisEl){
+			var opac = $.fn.razorModal.defaults.overlayCss["opacity"];
+			var time = $.fn.razorModal.defaults.time;
+
 			$("#modal-overlay").css({"opacity":"0"});
 			$("#modal-overlay").css({"display":""});
 			$(thisEl).css({"opacity":"0"});
 			$(thisEl).css({"display":""});
-			$("#modal-overlay").animate({"opacity":"0.75"},$.fn.razorModal.defaults.time);
-			$(thisEl).animate({"opacity":"1"},$.fn.razorModal.defaults.time);
+			$("#modal-overlay").animate({"opacity":opac},time);
+			$(thisEl).animate({"opacity":"1"},time);
 			this.setScroll(false);
 		},
 		animateHide: function(thisEl){
-			$("#modal-overlay").animate({"opacity":"0"},$.fn.razorModal.defaults.time);
-			$(thisEl).animate({"opacity":"0"},$.fn.razorModal.defaults.time, function(){ 
+			var opac = $.fn.razorModal.defaults.overlayCss["opacity"];
+			var time = $.fn.razorModal.defaults.time;
+
+			$("#modal-overlay").animate({"opacity":"0"},time);
+			$(thisEl).animate({"opacity":"0"},time, function(){ 
 				$("#modal-overlay").css({"display":"none"});
-				$("#modal-overlay").css({"opacity":"1"});
+				$("#modal-overlay").css({"opacity":opac});
 				$(thisEl).css({"display":"none"});
 				$(thisEl).css({"opacity":"1"});
 				actions.setScroll(true);
@@ -91,7 +96,6 @@
 
 		//show
 		if(opt && (opt.action === "show")) {
-			console.log("show");
 			actions.show(this);
 		}
 
@@ -141,29 +145,12 @@
 		actions.initialiseOverlay();
 	}
 
-	actions.initialiseOverlay();
-
+	$(function(){
+		actions.initialiseOverlay();
+	})
 
 
 })(jQuery);
 
-
-
-/*
-$("#modal-element").razormodal({"action":"init"});    						//set element as a modal;
-$("#modal-element").razormodal({"action":"show"});  		//show the modal element
-$("#modal-element").razormodal({"action":"hide"});  		//hide the modal element
-$("#modal-element")razorModal({"action":"animate-show"});   //animate-show the modal element
-$("#modal-element")razorModal({"action":"animate-hide"});   //animate-hide the modal element
-
-$.fn.razorModal.setOverlay(									//change overlay CSS settings
-{
-	"background":"rgb(255, 153, 51)",
-	"opacity":"0.25",
-	"z-index":"900"
-});
-
-$.fn.razorModal.defaults.time = 100;						//change animation-show /hide time
-*/
 
 //TODO: add callbacks

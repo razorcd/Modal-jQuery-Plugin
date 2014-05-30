@@ -8,11 +8,11 @@ Creat an element on the body to serve as the modal. Add ID="#modal-element" or w
 
 Use:
 ```
-$("#modal-element").razormodal({"action":"init"});    		//set element as a modal;
-$("#modal-element").razormodal({"action":"show"});  		//show the modal element
-$("#modal-element").razormodal({"action":"hide"});  		//hide the modal element
-$("#modal-element")razorModal({"action":"animate-show"});   //animate-show the modal element
-$("#modal-element")razorModal({"action":"animate-hide"});   //animate-hide the modal element
+$("#modal-element").razorModal({"action":"init"});    		//set element as a modal;
+$("#modal-element").razorModal({"action":"show"});  		//show the modal element
+$("#modal-element").razorModal({"action":"hide"});  		//hide the modal element
+$("#modal-element").razorModal({"action":"animate-show"});   //animate-show the modal element
+$("#modal-element").razorModal({"action":"animate-hide"});   //animate-hide the modal element
 
 $.fn.razorModal.setOverlay(									//change overlay CSS settings
 {
@@ -22,8 +22,11 @@ $.fn.razorModal.setOverlay(									//change overlay CSS settings
 });
 
 $.fn.razorModal.defaults.time = 100;						//change animation-show /hide time
+
+$("#modal-element2").razorModal({"action":"init"});    		//multiple modals can be added
 ```
 
-TODO: yourApp.html as an example to use
+TODO: yourApp.html as an example to 
+
 TODO: add callbacks
 

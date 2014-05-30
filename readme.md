@@ -1,12 +1,13 @@
 Modal jQuery Plugin
 ===================
+>v1.0
+>Created with TDD (Qunit). Open razorsJqModal-test.html to run all tests.
 
->Include razorModal.js after jQuery.js 1.x
+>Include razorsJqModal.min.js after jQuery.js 1.x in your project.
 
+>Create an element on the body to serve as a modal. Add ID="#modal-element" or whatever ID.
 
-Creat an element on the body to serve as the modal. Add ID="#modal-element" or whatever.
-
-Use:
+>Use:
 ```
 $("#modal-element").razorModal({"action":"init"});    		//set element as a modal;
 $("#modal-element").razorModal({"action":"show"});  		//show the modal element
@@ -21,12 +22,10 @@ $.fn.razorModal.setOverlay(									//change overlay CSS settings
 	"z-index":"900"
 });
 
-$.fn.razorModal.defaults.time = 100;						//change animation-show /hide time
+$.fn.razorModal.defaults.time = 100;						//change animation-show/hide time
 
 $("#modal-element2").razorModal({"action":"init"});    		//multiple modals can be added
 ```
 
-TODO: yourApp.html as an example to 
-
-TODO: add callbacks
+TODO: add callbacks and change {"action":"init"} to "init"
 

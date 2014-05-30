@@ -15,5 +15,5 @@ $("#modal-element").razormodal({"action":"hide"});  //hide the modal element
 ```
 
 TODO: yourApp.html as an example to use
-TODO: refactoring
+TODO: add callbacks
 

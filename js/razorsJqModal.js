@@ -1,63 +1,119 @@
 (function($){
 
+	var actions = {
+
+		//activate/deactivate scroll
+		setScroll: function(bool){
+			if (!bool) {
+				$('body, html').css({ overflow: 'hidden' });
+				// $(document.body).on("touchmove", function(event) {
+			 //    	event.preventDefault();
+			 //    	event.stopPropagation();
+			 // 	});
+
+		 	// 	$(document.window).on("scroll", function(e){
+		 	// 		console.log("scroll off");
+				// 	e.preventDefault();
+				// 	e.stopPropagation();})
+			}
+			else {
+			 	$('body,html').css({ overflow: '' });
+			 	// $(document.body).off("touchmove");
+			 	// $(window).off("scroll");
+			 }
+		},
+		show : function(thisEl){
+			$("#modal-overlay").show();
+			$(thisEl).show();
+			this.setScroll(false);
+		},
+		hide: function(thisEl){
+			$(thisEl).hide();
+			$("#modal-overlay").hide();
+			this.setScroll(true);
+		},
+		animateShow: function(thisEl){
+			$("#modal-overlay").css({"opacity":"0"});
+			$("#modal-overlay").css({"display":""});
+			$(thisEl).css({"opacity":"0"});
+			$(thisEl).css({"display":""});
+			$("#modal-overlay").animate({"opacity":"0.75"},$.fn.razorModal.defaults.time);
+			$(thisEl).animate({"opacity":"1"},$.fn.razorModal.defaults.time);
+			this.setScroll(false);
+		},
+		animateHide: function(thisEl){
+			$("#modal-overlay").animate({"opacity":"0"},$.fn.razorModal.defaults.time);
+			$(thisEl).animate({"opacity":"0"},$.fn.razorModal.defaults.time, function(){ 
+				$("#modal-overlay").css({"display":"none"});
+				$("#modal-overlay").css({"opacity":"1"});
+				$(thisEl).css({"display":"none"});
+				$(thisEl).css({"opacity":"1"});
+				actions.setScroll(true);
+			});
+		},
+		initialise: function(thisEl){
+				//add css
+				$(thisEl).css({"position":"fixed"});
+				$(thisEl).css({
+					"top": ($(window).outerHeight() - $(thisEl).height())/2,
+					"left": ($(window).outerWidth() - $(thisEl).width())/2,
+					"z-index":"1000"
+				});
+
+				$("#modal-overlay").on("click", function(){
+					$(thisEl).hide();
+				})
+				$(thisEl).hide();
+		},
+		initialiseOverlay: function(){
+			var $overlay;
+
+			if ($("#modal-overlay").length ===1 ) {
+				$overlay = $("#modal-overlay");
+				$overlay.css($.fn.razorModal.defaults.overlayCss);
+			}
+			else {
+				$overlay = $("<div id='modal-overlay'></div>");
+				$overlay.css($.fn.razorModal.defaults.overlayCss);
+				$("body").append($overlay);
+				$overlay.hide();
+
+				$("#modal-overlay").on("click", function(){
+					$(this).hide();
+					actions.setScroll(true);
+				})
+			}
+		}
+	}
+
 	
 	$.fn.razorModal = function(opt){
 
 		//show
 		if(opt && (opt.action === "show")) {
-			$("#modal-overlay").show();
-			$(this).show();
-			setScroll(false);
+			console.log("show");
+			actions.show(this);
 		}
 
 		//hide
 		if(opt && (opt.action === "hide")) {
-			$(this).hide();
-			$("#modal-overlay").hide();
-			setScroll(true);
+			actions.hide(this);
 		}
 
 		//animate-show
 		if(opt && (opt.action === "animate-show")) {
-			$("#modal-overlay").css({"opacity":"0"});
-			$("#modal-overlay").css({"display":""});
-			$(this).css({"opacity":"0"});
-			$(this).css({"display":""});
-			$("#modal-overlay").animate({"opacity":"0.75"},1000);
-			$(this).animate({"opacity":"1"},1000);
-			setScroll(false);
+			actions.animateShow(this);
 		}
 
 		//animate-hide
 		if(opt && (opt.action === "animate-hide")) {
-			$("#modal-overlay").animate({"opacity":"0"},1000);
-			$(this).animate({"opacity":"0"},1000, function(){ 
-				$("#modal-overlay").css({"display":"none"});
-				$("#modal-overlay").css({"opacity":"1"});
-				$(this).css({"display":"none"});
-				$(this).css({"opacity":"1"});
-				setScroll(true);
-			});
-
+			actions.animateHide(this);
 		}
 
 		//initialise
-		if(opt === undefined) {
+		if(opt && (opt.action === "init")) {
 			return this.each(function(){
-	 			var thiz = this;
-				//add css
-				$(this).css({"position":"fixed"});
-				$(this).css({
-					"top": ($(window).outerHeight() - $(this).height())/2,
-					"left": ($(window).outerWidth() - $(this).width())/2,
-					"z-index":"1000"
-				});
-
-				$("#modal-overlay").on("click", function(){
-					$(thiz).hide();
-				})
-				$(this).hide();
-	
+	 			actions.initialise(this);
 				return this;
 			})
 		}
@@ -79,42 +135,13 @@
 		time: 100
 	}
 
-
-
-	//activate/deactivate scroll
-	var setScroll=function(bool){
-
-		if (!bool) {
-			$('body, html').css({ overflow: 'hidden' });
-			// $(document.body).on("touchmove", function(event) {
-		 //    	event.preventDefault();
-		 //    	event.stopPropagation();
-		 // 	});
-
-	 	// 	$(document.window).on("scroll", function(e){
-	 	// 		console.log("scroll off");
-			// 	e.preventDefault();
-			// 	e.stopPropagation();
-			// })
-		}
-		 else {
-		 	$('body,html').css({ overflow: '' });
-		 	// $(document.body).off("touchmove");
-		 	// $(window).off("scroll");
-		 }
+	$.fn.razorModal.setOverlay = function(newOverlayCss){
+		if (newOverlayCss && (typeof newOverlayCss === "object"))
+			$.extend($.fn.razorModal.defaults.overlayCss, newOverlayCss);
+		actions.initialiseOverlay();
 	}
 
-
-	var $overlay = $("<div id='modal-overlay'></div>");
-	$overlay.css($.fn.razorModal.defaults.overlayCss)
-
-	$("body").append($overlay);
-	$overlay.hide();
-
-	$("#modal-overlay").on("click", function(){
-		$(this).hide();
-		setScroll(true);
-	})
+	actions.initialiseOverlay();
 
 
 
@@ -123,9 +150,20 @@
 
 
 /*
-$("#modal-element").razormodal();    						//set element as a modal;
+$("#modal-element").razormodal({"action":"init"});    						//set element as a modal;
 $("#modal-element").razormodal({"action":"show"});  		//show the modal element
 $("#modal-element").razormodal({"action":"hide"});  		//hide the modal element
 $("#modal-element")razorModal({"action":"animate-show"});   //animate-show the modal element
 $("#modal-element")razorModal({"action":"animate-hide"});   //animate-hide the modal element
+
+$.fn.razorModal.setOverlay(									//change overlay CSS settings
+{
+	"background":"rgb(255, 153, 51)",
+	"opacity":"0.25",
+	"z-index":"900"
+});
+
+$.fn.razorModal.defaults.time = 100;						//change animation-show /hide time
 */
+
+//TODO: add callbacks

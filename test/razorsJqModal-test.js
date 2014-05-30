@@ -1,4 +1,7 @@
 	$(function(){
+
+	QUnit.config.reorder = false;
+	
 	//initialisation
 	QUnit.begin(function(){
 		$("body").css({"overflow-y":"scroll"});   //always displaing scroll so it will not change screen width
@@ -40,6 +43,12 @@
 
 		test("#modal-element should be hidden", function(){
 			equal($("#modal-element").css("display"), "none", "#modal-element is hidden");
+		})
+
+		test("defaults should be defined",function(){
+			notEqual( $.fn.razorModal.defaults , undefined, "$.fn.razorModal.defaults   is defined");
+			equal(typeof $.fn.razorModal.defaults , "object", "$.fn.razorModal.defaults   is an object");
+			deepEqual(Object.keys($.fn.razorModal.defaults) , ["overlayCss", "time"], "$.fn.razorModal.defaults   is an object");
 		})
 
 
@@ -110,7 +119,7 @@ module("activating/deactivating #modal-element");
 	})
 
 
-	test("#modal-element should shohide when deactivated by click on #modal-overlay", function(){
+	test("#modal-element should show/hide when deactivated by click on #modal-overlay", function(){
 		$("#modal-element").razorModal({"action":"show"});
 		equal( $("body,html").css("overflow"), "hidden", "scroll is hidden");
 		notEqual( $("#modal-element").css("display"), "none", "#modal-element is displayed");
@@ -121,6 +130,68 @@ module("activating/deactivating #modal-element");
 		equal( $("#modal-element").css("display"), "none", "#modal-element is hidden");
 		equal( $("#modal-overlay").css("display"), "none", "#overlay-element is hidden");
 	})
+
+
+	test("#modal-element should show trough animation when activated by command", function(){
+
+		//showing
+		$("#modal-element").razorModal({"action":"animate-show"});
+
+		notEqual( $("#modal-element").css("display") , "none" , "#modal-element CSS display is not none at the begining of anim");
+		equal( $("#modal-element").css("opacity") , 0 , "#modal-element CSS opacity is set to 0 at the begining of anim");
+		notEqual( $("#modal-overlay").css("display") , "none" , "#modal-overlay CSS display is not none at the begining of anim");
+		equal( $("#modal-overlay").css("opacity") , 0 , "#modal-overlay CSS opacity is set to 0 at the begining of anim");
+		stop();
+		setTimeout( function(){
+			start();
+			equal( $("#modal-element").css("opacity") <1, true, "#modal-element CSS opacity is less the 1 - animation in progress");
+			equal( $("#modal-element").css("opacity") > 0.5, true, "#modal-element CSS opacity is greather then 0.5 - animation in progress");
+			equal( $("#modal-overlay").css("opacity") <1, true, "#modal-overlay CSS opacity is less the 1 - animation in progress");
+			equal( $("#modal-overlay").css("opacity") > 0.5, true, "#modal-overlay CSS opacity is greather then 0.5 - animation in progress");
+			stop();
+
+			setTimeout( function(){
+				start();
+				equal( $("#modal-element").css("opacity"), 1, "#modal-element CSS opacity is 1, animation ended by showing the #modal-element");
+				equal( $("#modal-overlay").css("opacity"), 0.75, "#modal-overlay CSS opacity is 0.75, animation ended by showing the #modal-overlay");
+			},150);
+
+		},900);
+
+	});
+
+
+
+
+test("#modal-element should hide trough animation when activated by command", function(){
+
+		//hiding
+		$("#modal-element").razorModal({"action":"animate-hide"});
+
+		notEqual( $("#modal-element").css("display") , "none" , "#modal-element CSS display is not none at the begining of anim");
+		equal( $("#modal-element").css("opacity") , 1 , "#modal-element CSS opacity is set to 1 at the begining of anim");
+		notEqual( $("#modal-overlay").css("display") , "none" , "#modal-overlay CSS display is not none at the begining of anim");
+		equal( $("#modal-overlay").css("opacity") , 0.75 , "#modal-overlay CSS opacity is set to 0.75 at the begining of anim");
+		stop();
+		setTimeout( function(){
+			start();
+			equal( $("#modal-element").css("opacity") <0.5, true, "#modal-element CSS opacity is less the 0.5 - animation in progress");
+			equal( $("#modal-element").css("opacity") > 0, true, "#modal-element CSS opacity is greather then 0 - animation in progress");
+			equal( $("#modal-overlay").css("opacity") <0.5, true, "#modal-overlay CSS opacity is less the 0.5 - animation in progress");
+			equal( $("#modal-overlay").css("opacity") > 0, true, "#modal-overlay CSS opacity is greather then 0 - animation in progress");
+			stop();
+
+			setTimeout( function(){
+				start();
+				equal( $("#modal-element").css("opacity"), 1, "#modal-element CSS opacity is 1(reset), animation ended by hiding the #modal-element");
+				equal( $("#modal-element").css("display"), "none", "#modal-element CSS display is 'none', animation ended by hiding the #modal-element");
+				equal( $("#modal-overlay").css("opacity"), 1, "#modal-overlay CSS opacity is 1(reset), animation ended by hiding the #modal-overlay");
+				equal( $("#modal-overlay").css("display"), "none", "#modal-overlay CSS display is 'none', animation ended by hiding the #modal-overlay");
+			},150);
+
+		},900);
+		
+});
 
 
 

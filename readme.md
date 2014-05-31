@@ -1,13 +1,14 @@
-Modal jQuery Plugin
-===================
->v1.0
->Created with TDD (Qunit). Open razorsJqModal-test.html to run all tests.
+Modal jQuery Plugin  v1.0
+=========================
+
+Created with TDD (Qunit). Open razorsJqModal-test.html to run all tests.
 
 >Include razorsJqModal.min.js after jQuery.js 1.x in your project.
 
 >Create an element on the body to serve as a modal. Add ID="#modal-element" or whatever ID.
 
 >Use:
+
 ```
 $("#modal-element").razorModal({"action":"init"});    		//set element as a modal;
 $("#modal-element").razorModal({"action":"show"});  		//show the modal element

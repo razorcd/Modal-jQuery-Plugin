@@ -185,7 +185,7 @@ module("activating/deactivating #modal-element");
 					start();
 					equal( $("#modal-element").css("opacity"), 1, "#modal-element CSS opacity is 1(reset), animation ended by hiding the #modal-element");
 					equal( $("#modal-element").css("display"), "none", "#modal-element CSS display is 'none', animation ended by hiding the #modal-element");
-					equal( $("#modal-overlay").css("opacity"), 1, "#modal-overlay CSS opacity is 1(reset), animation ended by hiding the #modal-overlay");
+					equal( $("#modal-overlay").css("opacity"), 0.75, "#modal-overlay CSS opacity is 0.75(reset), animation ended by hiding the #modal-overlay");
 					equal( $("#modal-overlay").css("display"), "none", "#modal-overlay CSS display is 'none', animation ended by hiding the #modal-overlay");
 				},150);
 

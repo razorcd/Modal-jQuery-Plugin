@@ -49,5 +49,5 @@ $("#modal_element2").razorModal({"action":"init"});    		//multiple modals can b
 - default "close modal by clicking overlay" should have `disable` option in options
 - add option to run callbacks on `.razorModal` show/hide calls
 - change `{"action":"init"}` to `"init"`
-
+- add version number to modal js file
 

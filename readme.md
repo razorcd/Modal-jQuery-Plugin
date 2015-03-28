@@ -9,11 +9,11 @@ Created with TDD (Qunit). Open razorsJqModal-test.html to run all tests.
 ##Use:
 
 ``` javascript
-$("#modal-element").razorModal({"action":"init"});    		//set element as a modal;
-$("#modal-element").razorModal({"action":"show"});  		//show the modal element when you need it
-$("#modal-element").razorModal({"action":"hide"});  		//hide the modal element when you need to
-$("#modal-element").razorModal({"action":"animate-show"});   //animate-show the modal element when you need it
-$("#modal-element").razorModal({"action":"animate-hide"});   //animate-hide the modal element when you need to
+$("#modal_element").razorModal({"action":"init"});    		//set element as a modal;
+$("#modal_element").razorModal({"action":"show"});  		//show the modal element when you need it
+$("#modal_element").razorModal({"action":"hide"});  		//hide the modal element when you need to
+$("#modal_element").razorModal({"action":"animate-show"});   //animate-show the modal element when you need it
+$("#modal_element").razorModal({"action":"animate-hide"});   //animate-hide the modal element when you need to
 
 $.fn.razorModal.setOverlay(									//change overlay CSS settings
 {

@@ -29,6 +29,7 @@ $("#modal-element2").razorModal({"action":"init"});    		//multiple modals can b
 ```
 
 ##TODO: 
+- default "scroll disabled on modal show" should have `disable` option in options
 - add option to run callbacks on `.razorModal` show/hide calls
 - change {"action":"init"} to "init"
 

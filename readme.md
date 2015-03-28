@@ -24,7 +24,7 @@ $.fn.razorModal.setOverlay(									//change overlay CSS settings
 
 $.fn.razorModal.defaults.time = 100;						//change animation-show/hide time
 
-$("#modal-element2").razorModal({"action":"init"});    		//multiple modals can be added
+$("#modal_element2").razorModal({"action":"init"});    		//multiple modals can be added
 ...
 ```
 

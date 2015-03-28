@@ -7,7 +7,23 @@ Created with TDD (Qunit). Open razorsJqModal-test.html to run all tests.
 >Create an element on the body to serve as a modal. Add ID="#modal-element" or whatever ID.
 
 ##Use:
+```html
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="modal.css">
+	<script type="text/javascript" src="jquery-1.11.1.min.js" ></script>
+	<script type="text/javascript" src="razorsJqModal.js" ></script>
+</head>
+<body>
+	<div id="modal_element">
+		<p>Lorem ipsum dolor sit amet ...</p>
+		<button> OK </button>
+	</div>
+</body>
+</html>
+```
 
+In your JS file:
 ``` javascript
 $("#modal_element").razorModal({"action":"init"});    		//set element as a modal;
 $("#modal_element").razorModal({"action":"show"});  		//show the modal element when you need it

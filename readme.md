@@ -1,5 +1,4 @@
-Modal jQuery Plugin  v1.0
-=========================
+#Modal jQuery Plugin  v1.0
 
 Created with TDD (Qunit). Open razorsJqModal-test.html to run all tests.
 
@@ -7,14 +6,14 @@ Created with TDD (Qunit). Open razorsJqModal-test.html to run all tests.
 
 >Create an element on the body to serve as a modal. Add ID="#modal-element" or whatever ID.
 
->Use:
+##Use:
 
-```
+``` javascript
 $("#modal-element").razorModal({"action":"init"});    		//set element as a modal;
-$("#modal-element").razorModal({"action":"show"});  		//show the modal element
-$("#modal-element").razorModal({"action":"hide"});  		//hide the modal element
-$("#modal-element").razorModal({"action":"animate-show"});   //animate-show the modal element
-$("#modal-element").razorModal({"action":"animate-hide"});   //animate-hide the modal element
+$("#modal-element").razorModal({"action":"show"});  		//show the modal element when you need it
+$("#modal-element").razorModal({"action":"hide"});  		//hide the modal element when you need to
+$("#modal-element").razorModal({"action":"animate-show"});   //animate-show the modal element when you need it
+$("#modal-element").razorModal({"action":"animate-hide"});   //animate-hide the modal element when you need to
 
 $.fn.razorModal.setOverlay(									//change overlay CSS settings
 {
@@ -26,7 +25,10 @@ $.fn.razorModal.setOverlay(									//change overlay CSS settings
 $.fn.razorModal.defaults.time = 100;						//change animation-show/hide time
 
 $("#modal-element2").razorModal({"action":"init"});    		//multiple modals can be added
+...
 ```
 
-TODO: add callbacks and change {"action":"init"} to "init"
+##TODO: 
+- add option to run callbacks on `.razorModal` show/hide calls
+- change {"action":"init"} to "init"
 

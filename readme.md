@@ -46,6 +46,8 @@ $("#modal_element2").razorModal({"action":"init"});    		//multiple modals can b
 
 ##TODO: 
 - default "scroll disabled on modal show" should have `disable` option in options
+- default "close modal by clicking overlay" should have `disable` option in options
 - add option to run callbacks on `.razorModal` show/hide calls
-- change {"action":"init"} to "init"
+- change `{"action":"init"}` to `"init"`
+
 

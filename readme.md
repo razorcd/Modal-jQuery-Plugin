@@ -1,6 +1,6 @@
 #Modal jQuery Plugin  v1.0
 
-Created with TDD (Qunit). Open razorsJqModal-test.html to run all tests.
+Created with TDD(Qunit). Open razorsJqModal-test.html to run all tests.
 
 >Include razorsJqModal.min.js after jQuery.js 1.x in your project.
 
